@@ -64,7 +64,7 @@ class SubmissionController extends Controller
 
         $user->save();
 
-        return redirect()->action([self::class, 'index'])->withSuccess('Ricevuto la sua iscrizione, Grazie');
+        return redirect()->action([self::class, 'index'])->withSuccess('Le tue foto sono state caricate con successo');
     }
 
     /**
