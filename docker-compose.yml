@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - '80:80'
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - pumpkin_network
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - pumpkin_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: pumpkin
+      MYSQL_USER: pumpkin
+      MYSQL_PASSWORD: secret
+    networks:
+      - pumpkin_network
+  server:
+    image: docker.io/bitnami/laravel:7
+    environment:
+      DB_HOST: mysql
+      DB_USERNAME: pumpkin
+      DB_DATABASE: pumpkin
+      DB_PASSWORD: secret
+      VIRTUAL_HOST: pumpkin.dock
+    depends_on:
+      - mysql
+    volumes:
+      - ./:/app
+      - ./storage/app/public:/app/public/storage
+    networks:
+      - pumpkin_network
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pumpkin
+      PMA_HOST: mysql
+      VIRTUAL_HOST: db.pumpkin.dock
+    networks:
+      - pumpkin_network
+networks:
+  pumpkin_network:
+volumes:
+  pumpkin_data:
