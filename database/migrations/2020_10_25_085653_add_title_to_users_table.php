@@ -14,7 +14,7 @@ class AddTitleToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('title')->after('password')->nullable();
+            $table->string('submission_title')->after('password')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddTitleToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('title');
+            $table->dropColumn('submission_title');
         });
     }
 }

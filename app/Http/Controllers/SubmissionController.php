@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class SubmissionController extends Controller
 {
@@ -13,7 +16,12 @@ class SubmissionController extends Controller
      */
     public function index()
     {
-        //
+        if (is_null(Auth::user()->submission_title)) {
+            return redirect()->action([self::class, 'create']);
+        }
+
+        $users = User::whereNotNull('submission_title')->get();
+        return view('index', compact('users'));
     }
 
     /**
@@ -23,7 +31,7 @@ class SubmissionController extends Controller
      */
     public function create()
     {
-        //
+        return view('submission.create');
     }
 
     /**
@@ -34,7 +42,29 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string',
+            'photos' => 'required|array|min:1',
+            'photos.*' => 'image'
+        ]);
+
+        $user = $request->user();
+        $user->submission_title = $request->input('title');
+
+        // Clear all previous photos
+        foreach ($user->photos as $photo) {
+            $photo->delete();
+        }
+
+        foreach ($request->file('photos') as $photo) {
+            $user->photos()->create([
+                'path' => $photo->store('photos'),
+            ]);
+        }
+
+        $user->save();
+
+        return redirect()->action([self::class, 'index'])->withSuccess('Ricevuto la sua iscrizione, Grazie');
     }
 
     /**
@@ -56,7 +86,7 @@ class SubmissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('submission.create');
     }
 
     /**
@@ -68,7 +98,7 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // TODO: redundant?
     }
 
     /**
@@ -79,6 +109,6 @@ class SubmissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //TODO: possible?
     }
 }

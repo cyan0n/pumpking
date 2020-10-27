@@ -13,12 +13,29 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                black: '#0D0708',
+                orange: {
+                    default: '#FD5F21',
+                    light: '#FF8428',
+                    dark: '#442616',
+                    darker: '#321c10',
+                }
+            },
+        },
+        container: {
+            center: true,
+            padding: {
+                default: '2rem',
+                sm: '4rem',
+                lg: '6rem',
+                xl: '8rem',
+            },
         },
     },
-
     variants: {
         opacity: ['responsive', 'hover', 'focus', 'disabled'],
     },
 
-    plugins: [require('@tailwindcss/ui')],
-};
+        plugins: [require('@tailwindcss/ui')],
+    };
