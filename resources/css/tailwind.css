@@ -4,17 +4,35 @@
 
 
 .btn {
-	@apply inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest transition ease-in-out duration-150
+    @apply inline-flex
+    items-center
+    px-4
+    py-2
+    bg-orange-dark
+    border
+    border-transparent
+    rounded-md
+    text-xs
+    text-white
+    font-bold
+    uppercase
+    tracking-widest
+    transition
+    ease-in-out duration-150;
 }
 
 .btn:hover {
-	@apply bg-gray-700;
+	@apply bg-orange-darker;
 }
 
 .btn:active {
-	@apply bg-gray-900;
+	@apply bg-orange-darker;
 }
 
 .btn:focus {
 	@apply outline-none border-gray-900 shadow-outline-gray;
+}
+
+.btn:disabled {
+    @apply opacity-25;
 }
