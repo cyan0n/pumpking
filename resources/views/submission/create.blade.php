@@ -13,17 +13,17 @@
 			  <label class="block uppercase tracking-wide text-orange-dark text-xl font-bold mb-2" for="title">
 				Titolo
 			  </label>
-			  <input class="appearance-none block bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-4/5 border-2 border-orange-dark" id="title" name="title" type="text" placeholder="">
+			  <input class="appearance-none block bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full border-2 border-orange-dark" id="title" name="title" type="text" placeholder="">
 			</div>
 		  </div>
 
 		<h2 class="text-orange-dark font-bold text-xl mb-4 tracking-wide uppercase">
 			Sgancia qui le tue zucche🎃
 		</h2>
-		<div class="flex flex-row justify-between">
-            <upload></upload>
-            <upload></upload>
-            <upload></upload>
+		<div class="flex flex-row justify-between flex-wrap">
+		<upload></upload>
+		<upload></upload>
+		<upload></upload>
 		</div>
 		<button type="submit" class="text-white text-xl font-bold rounded py-2 px-10 mt-6 mx-auto bg-orange-dark hover:bg-orange-darker">
 			Invia

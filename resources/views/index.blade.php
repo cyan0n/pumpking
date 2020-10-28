@@ -10,9 +10,10 @@
 		</div>
 	@endif
 
-	<div class="rounded bg-orange-light p-4">		
+	<div class="rounded bg-orange-light p-4 relative">		
 		<h1 class="text-white text-4xl mb-5 font-bold text-center">Campo di zucche</h1>
-		<div class="grid grid-cols-3 gap-5">
+		<a href="{{  route('create') }}" class="btn absolute top-3 right-3">Reupload</a>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 			@each('submission.list-item', $users, 'user')
 		</div>
 		
