@@ -6,7 +6,7 @@
 <div class="container mx-auto py-10">
 	<div class="rounded bg-orange-light p-4 relative">
 		<h1 class="text-white text-4xl mb-5 font-bold text-center">Choose your champion</h1>
-		<voting :pumpkins='{!! json_encode($users) !!}' action="{{ route('vote.store') }}"/>
+		<voting :pumpkins='@json($users)' action="{{ route('vote.store') }}"/>
 	</div>
 </div>
 @endsection

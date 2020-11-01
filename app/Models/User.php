@@ -57,6 +57,7 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'score',
     ];
 
     public function photos()
@@ -67,5 +68,31 @@ class User extends Authenticatable
     public function vote()
     {
         return $this->hasOne('App\Models\Vote');
+    }
+    
+    public function firsts()
+    {
+        return $this->hasMany('App\Models\Vote', 'first');
+    }
+    
+    public function seconds()
+    {
+        return $this->hasMany('App\Models\Vote', 'second');
+    }
+    
+    public function thirds()
+    {
+        return $this->hasMany('App\Models\Vote', 'third');
+    }
+
+    public function getScoreAttribute()
+    {
+        $result = 0;
+
+        $result += $this->firsts->count() * 3;
+        $result += $this->seconds->count() * 2;
+        $result += $this->thirds->count();
+
+        return $result;
     }
 }

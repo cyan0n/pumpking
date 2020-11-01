@@ -24,6 +24,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', [VoteController::class, 'create'])->name('vote.create');
     Route::post('/', [VoteController::class, 'store'])->name('vote.store');
     Route::get('/risultati', [VoteController::class, 'index'])->name('vote.index');
+
+    Route::get('/test', [VoteController::class, 'test']);
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

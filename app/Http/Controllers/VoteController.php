@@ -42,4 +42,14 @@ class VoteController extends Controller
 
         return redirect()->action([self::class, 'index'])->withSuccess('');
     }
+
+    public function test()
+    {
+        $users = User::whereNotNull('submission_title')->get();
+        $users = $users->sortBy(function ($user){
+            return $user->score;
+        });
+        
+        return $users;
+    }
 }

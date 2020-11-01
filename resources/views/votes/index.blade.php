@@ -9,7 +9,7 @@
 	@endif
 	<div class="rounded bg-orange-light p-4 realative">
 		<h1 class="text-white text-2xl font-bold text-center">
-			I risultati sarannò rilasciati preso!
+			I risultati sarannò rilasciati presto!
 		</h1>
 	</div>
 </div>
