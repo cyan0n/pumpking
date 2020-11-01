@@ -19,7 +19,6 @@ export default {
 	},
 	mounted() {
 		this.media = this.photos.map(photo => {
-			console.log(photo)
 			return {
 				thumb: photo.uri,
 				src: photo.uri

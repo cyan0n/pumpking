@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VoteController;
 use App\Http\Controllers\SubmissionController;
 
 /*
@@ -19,7 +20,10 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::resource('/', SubmissionController::class);
+    //Route::resource('/', SubmissionController::class);
+    Route::get('/', [VoteController::class, 'create'])->name('vote.create');
+    Route::post('/', [VoteController::class, 'store'])->name('vote.store');
+    Route::get('/risultati', [VoteController::class, 'index'])->name('vote.index');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

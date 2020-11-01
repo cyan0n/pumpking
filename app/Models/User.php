@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Photo');
     }
+
+    public function vote()
+    {
+        return $this->hasOne('App\Models\Vote');
+    }
 }
