@@ -8,7 +8,13 @@ use Illuminate\Http\Request;
 class VoteController extends Controller
 {
     public function index() {
-        return view('votes.index');
+        $users = User::whereNotNull('submission_title')->get();
+        $users = $users->sortByDesc(function ($user){
+            return $user->score;
+        });
+        
+        $users = $users->slice(0, 3)->values()->all();
+        return view('votes.index', compact('users'));
     }
 
     public function create()
@@ -50,6 +56,6 @@ class VoteController extends Controller
             return $user->score;
         });
         
-        return $users;
+        return $users->slice(0, 3);
     }
 }
